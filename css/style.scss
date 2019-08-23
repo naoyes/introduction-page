@@ -1,0 +1,793 @@
+@import 'reset';
+
+//変数
+$c-main: #222222;
+$c-sub: #F0F0F0;
+$c-span: #cc2406;
+
+/* レスポンシブ */
+$w-pc: 1034px;
+$w-tab: $w-pc - 1;
+$w-sp: 767px;
+
+@mixin pc {
+	@media (min-width: ($w-pc)) {
+		@content;
+	}
+}
+
+@mixin tab {
+	@media (max-width: ($w-tab)) {
+		@content;
+	}
+}
+
+@mixin sp {
+	@media (max-width: ($w-sp)) {
+		@content;
+	}
+}
+
+/* 共通 */
+html {
+  font-size: 62.5%;
+  @include sp {
+    font-size: 55%;
+  }
+}
+body {
+  font-family: 'Arial', "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+.inner {
+	margin: 0 auto;
+  width: $w-pc;
+	max-width: 100%;
+	padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
+  overflow:hidden;
+}
+a {
+	text-decoration: none;
+}
+.title {
+  display: inline-block;
+  color: $c-main;
+  font-size: 2.8rem;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background-color: $c-main;
+    left: 20%;
+    bottom: -65px;
+  }
+  @include sp {
+    white-space: nowrap;
+    font-size: 20px;
+  }
+}
+
+/* header */
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  #canvas-basic {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .inner {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.gnav {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  &-list {
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 9px;
+  }
+  &-item {
+    &:not(:last-of-type) {
+      margin-right: 41px;
+      @include sp {
+        margin-right: 20px;
+      }
+    }
+    a {
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      font-size: 1.6rem;
+      letter-spacing: -0.025em;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 80%;
+        height: 1px;
+        background-color: #fff;
+        left: 10%;
+        bottom: -10px;
+        display: none;
+      }
+      &:hover::after {
+        display: block;
+      }
+      @include sp {
+        white-space: nowrap;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+/* mv */
+.mv {
+  height: 705px;
+  background: url("../img/header.jpg") bottom center no-repeat;
+  background-color: $c-main;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+  @include sp {
+    height: 600px;
+  }
+  &::before {
+    content: '';
+    background: inherit;
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+  }
+  .inner {
+    padding-top: 230px;
+    padding-bottom: 170px;
+    @include sp {
+      padding-top: 200px;
+      padding-bottom: 140px;
+    }
+  }
+  &-content {
+    width: 650px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  &-title {
+		color: $c-sub;
+    font-size: 5rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    @include sp {
+      white-space: nowrap;
+      font-size: 26px;
+    }
+  }
+  &-txt {
+    color: $c-sub;
+    font-size: 2.5rem;
+    letter-spacing: 0.025em;
+    margin-top: 45px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    @include sp {
+      white-space: nowrap;
+      font-size: 13px;
+    }
+  }
+  .btn-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  &-btn {
+    display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 270px;
+		height: 70px;
+		border-radius: 6px;
+    background:linear-gradient(135deg, #f3834b 0%,#c88365 100%);
+    border-bottom: solid 5px #A96E54;
+		color: #fff;
+    font-size: 2.5rem;
+    letter-spacing: 0.025em;
+    font-weight: bold;
+    margin-top: 100px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    transition: .2s;
+    &:hover {
+      text-shadow: -6px 0px 15px rgba(255, 255, 240, 0.6),
+      6px 0px 15px rgba(255, 255, 240, 0.6);
+    }
+    &:active {
+      -webkit-transform: translateY(4px);
+      transform: translateY(4px);
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+      border-bottom: none;
+    }
+    @include sp {
+      font-size: 20px;
+    }
+  }
+}
+
+/* reason */
+.reason {
+  .inner {
+    padding-top: 150px;
+    @include sp {
+      padding-top: 100px;
+    }
+  }
+  .tab-group {
+    margin-top: 130px;
+    display: flex;
+    justify-content: center;
+  }
+  .tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    font-size: 2rem;
+    color: $c-main;
+    border: 2px solid #222222;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    &:not(:last-of-type) {
+      margin-right: 20px;
+    }
+    &.is-active {
+      border: none;
+      color: #fff;
+      background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    }
+    @include sp {
+      font-size: 15px;
+    }
+  }
+  .panel-group {
+    max-width: 700px;
+    margin: 50px auto 0;
+  }
+  .panel {
+    display: none;
+    &.is-show {
+      display: block;
+    }
+  }
+  &-title {
+    display: inline-block;
+    font-size: 2rem;
+    letter-spacing: 0.025em;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+  &-txt {
+    margin-top: 40px;
+    font-size: 1.8rem;
+    letter-spacing: 0.025em;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    @include sp {
+      line-height: 1.8;
+    }
+  }
+}
+
+.profile {
+  .inner {
+    padding-top: 150px;
+    @include sp {
+      padding-top: 100px;;
+    }
+  }
+  &-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 140px;
+    @include sp {
+      flex-direction: column;
+    }
+  }
+  .img-wrapper {
+    width: 375px;
+    height: 278px;
+    @include sp {
+      width: 70%;
+      height: 70%;
+    }
+    @include tab {
+      width: 70%;
+      height: 70%;
+    }
+  }
+  .face-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 420px;
+    margin-left: 50px;
+    font-size: 1.9rem;
+    letter-spacing: 0.025em;
+    line-height: 2.5;
+    text-align-last: left;
+    position: relative;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+    @include sp {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 50px;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+    @include tab {
+      white-space: nowrap;
+    }
+    .name {
+      display: inline-block;
+      position: relative;
+      &::after {
+        content: 'ーかわぐち はるかー';
+        position: absolute;
+        top: 16%;
+        right: -130px;
+        font-size: 1.2rem;
+        @include sp {
+          right: -110px;
+        }
+      }
+    }
+  }
+}
+.appeal {
+  margin-top: 70px;
+  &-title {
+    display: inline-block;
+    padding: 10px 25px;
+    font-size: 2.2rem;
+    letter-spacing: 0.025em;
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: $c-sub;
+    border-radius: 0 10px 0 10px;
+  }
+  &-items {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    max-width: 800px;
+  }
+  &-item {
+    margin-top: 40px;
+    font-size: 1.7rem;
+    letter-spacing: 0.025em;
+    line-height: 1.5;
+    border-left: 1px solid $c-main;
+    border-right: 1px solid $c-main;
+    padding: 0 1em;
+    @include sp {
+      line-height: 1.8;
+    }
+  }
+}
+
+.history {
+  .inner {
+    padding-top: 100px;
+    padding-bottom: 10px;
+  }
+  &-title {
+    font-size: 1.7rem;
+    margin-top: 130px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &-contents {
+    padding-top: 68px;
+    display: flex;
+    justify-content: center;
+    @include sp {
+      flex-direction: column;
+    }
+    @include tab {
+      justify-content: space-between;
+    }
+  }
+  &-contents-left {
+    max-width: 100%;
+    margin: 0 auto;
+    @include sp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  &-content {
+    @include tab {
+      width: 100%;
+    }
+    @include sp {
+      width: 100%;
+    }
+  }
+  .books {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 60px;
+    font-size: 2.8rem;
+    letter-spacing: 0.075em;
+    font-weight: normal;
+    border: 2px solid $c-main;
+    margin: 0 auto 50px;
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 20px;
+      width: 400px;
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+      margin-top: 25px;
+      @include sp {
+        width: 100%;
+      }
+      @include tab {
+        width: 300px;
+      }
+    }
+    &-detail {
+      @include sp {
+        width: 50%;
+      }
+      @include tab {
+        width: 60%;
+      }
+    }
+    &-image {
+      width: 133px;
+      height: 187px;
+      @include sp {
+        width: 35%;
+        height: 35%;
+      }
+      @include tab {
+        width: 35%;
+        height: 35%;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &-title {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      text-align: left;
+      width: 195px;
+      @include sp {
+        font-size: 15px;
+        white-space: nowrap;
+      }
+      @include tab {
+        font-size: 15px;
+        white-space: nowrap;
+      }
+    }
+  }
+  .amazon-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 45px;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    color: #fff;
+    font-size: 2.3rem;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: .5s;
+    @include sp {
+      margin-top: 5px;
+      width: 140px;
+      height: 35px;
+    }
+    @include tab {
+      margin-top: 5px;
+      width: 140px;
+      height: 35px;
+    }
+    i {
+      margin-right: 6px;
+      font-size: 2rem;
+    }
+    &:hover {
+      transform: scale(1.03, 1.03);
+    }
+  }
+  &-contents-right {
+    max-width: 100%;
+    margin: 0 auto;
+    @include sp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .udemy {
+    @extend .books;
+    @include sp {
+      margin-top: 70px;
+    }
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px 20px;
+      width: 400px;
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+      margin-top: 25px;
+      @include sp {
+        width: 100%;
+      }
+      @include tab {
+        width: 350px;
+        margin-left: 25px;
+      }
+    }
+    &-title {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      text-align: left;
+      width: 200px;
+      @include sp {
+        font-size: 14px;
+        width: 60%;
+      }
+    }
+  }
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    border-radius: 2px;
+    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+    color: #fff;
+    font-size: 2.3rem;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    transition: .5s;
+    @include sp {
+      width: 80px
+    }
+    &:hover {
+      transform: scale(1.03, 1.03);
+    }
+  }
+
+  .other {
+    @extend .books;
+    margin-top: 65px;
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 20px;
+      width: 400px;
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+      margin-top: 25px;
+      @include sp {
+        width: 100%;
+      }
+    }
+    &-title {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      text-align: left;
+      width: 230px;
+      @include sp {
+        font-size: 14px;
+        width: 60%;
+      }
+      span {
+        display: inline-block;
+        font-size: 1.8rem;
+        color: $c-span;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .btn-wrapper {
+    transition:.5s;
+    &:hover {
+      transform: scale(1.02, 1.02);
+    }
+  }
+  .trial-btn {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 80px;
+    background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
+    color: #fff;
+    font-size: 1.8rem;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    border: 3px solid #fff;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+    @include sp {
+      width: 300px;
+      font-size: 14px;
+    }
+  }
+}
+
+.qanda {
+  .inner {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    @include sp {
+      padding-bottom: 50px;
+    }
+  }
+  &-items {
+    padding-top: 130px;
+    display: flex;
+		flex-direction: column;
+		align-items: center;
+  }
+  &-title {
+    font-size: 2rem;
+    letter-spacing: 0.025em;
+    margin-bottom: 60px;
+    @include sp {
+      font-size: 14px;
+      white-space: nowrap;
+    }
+  }
+  &-item {
+    cursor: pointer;
+		padding: 25px;
+		border-radius: 3px;
+    margin-bottom: 40px;
+    border: 2px solid $c-main;
+    width: 100%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  }
+  &-q {
+    display: flex;
+    align-items: center;
+    position: relative;
+    &-txt {
+      font-size: 2rem;
+      letter-spacing: 0.025em;
+      margin-left: 50px;
+      @include sp {
+        font-size: 14px;
+        margin-left: 25px;
+        white-space: nowrap;
+      }
+    }
+    &::before {
+      font-family: "Font Awesome 5 Brands";
+      content: '\f2c4';
+      font-weight: 400;
+      font-size: 2rem;
+      color: $c-span;
+      position: absolute;
+      top: 3;
+      left: 0;
+    }
+    &::after {
+      font-family: "Font Awesome 5 Free";
+      content: '\f067';
+      font-weight: 900;
+      color: $c-span;
+      font-size: 2rem;
+      position: absolute;
+      top: 3;
+      right: 0;
+    }
+    &.active {
+      &::after {
+        content: '\f068';
+      }
+    }
+  }
+  &-a {
+    display: none;
+    width: 100%;
+    background-color: $c-sub;
+    border-radius: 10px;
+    margin-top: 30px;
+    &-txt {
+      font-size: 1.8rem;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+      padding: 30px 15px;
+      text-align: left;
+      @include sp {
+        line-height: 1.8;
+      }
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+  background-blend-mode: multiply;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-txt {
+    font-size: 2rem;
+    color: $c-sub;
+    letter-spacing: 0.025em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    @include sp {
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .smile {
+      margin-left: 8px;
+    }
+  }
+}
